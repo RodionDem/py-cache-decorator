@@ -1,11 +1,11 @@
-from typing import Callable
+from typing import Callable, Any
 
 
 def cache(func: Callable) -> Callable:
     cache_data = {}
 
-    def wrapper(*args, **kwargs) -> Callable:
-        key = (args, tuple(kwargs.items()))
+    def wrapper(*args, **kwargs) -> Any:
+        key = (args, tuple(sorted(kwargs.items())))
         if key in cache_data:
             print("Getting from cache")
             return cache_data[key]
